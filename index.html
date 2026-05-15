@@ -1,13 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="si">
 <head>
-    <title>FoP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Officers Portal</title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/akalanka929-eng/BR-EXPLORER/main/App%2040.ico" type="image/x-icon">
+    <link rel="icon" href="https://raw.githubusercontent.com/akalanka929-eng/BR-EXPLORER/main/App%2040.ico" type="image/x-icon">
+    
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100vh; border: none; }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%;
+            background-color: #121212; /* Dark Mode Background */
+            overflow: hidden; 
+            font-family: Arial, sans-serif;
+        }
+
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        /* විශාල කරන ලද වෘත්තාකාර රාමුව */
+        .circle-frame {
+            width: 850px;      /* පෙර 280 -> 350 දක්වා විශාල කර ඇත */
+            height: 850px;     /* සමාන උසක් */
+            border-radius: 50%; /* සම්පූර්ණ වෘත්තයක් */
+            overflow: hidden;   /* රාමුවෙන් පිටත කොටස් සඟවයි */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1e1e2f; /* රාමුවේ පසුබිම */
+            box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.25); /* දීප්තිය තරමක් වැඩි කර ඇත */
+            border: 4px solid rgba(255, 255, 255, 0.2); /* මායිම තරමක් ඝන කර ඇත */
+        }
+
+        /* රූපය වෘත්තයට සරිලන ලෙස සකසන්න */
+        .circle-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* GIF එක රාමුව පුරා වටවීමට */
+            display: block;
+        }
+
+        /* Web App එක පෙන්වන කොටස */
+        #app-container {
+            width: 100%;
+            height: 100vh;
+            display: none; 
+        }
+
+        iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none;
+        }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbyxQtnuW7x81YvWkVS3nW_oqMKn95LZ4kVe2eAQh-NoXFdncFSs8lq6nZ0KXivBSI5G/exec"></iframe>
+
+    <div id="splash-screen">
+        <div class="circle-frame">
+            <img src="https://raw.githubusercontent.com/akalanka929-eng/iresha-akalanka/main/SL%20Gif%202.gif" alt="Loading Logo">
+        </div>
+    </div>
+
+    <div id="app-container">
+        <iframe src="https://script.google.com/macros/s/AKfycbyxQtnuW7x81YvWkVS3nW_oqMKn95LZ4kVe2eAQh-NoXFdncFSs8lq6nZ0KXivBSI5G/exec"></iframe>
+</div>
+
+    <script>
+        // තත්පර 6කට පසු ස්ප්ලෑෂ් තිරය වසා App එක පෙන්වයි
+        setTimeout(function() {
+            var splash = document.getElementById('splash-screen');
+            var app = document.getElementById('app-container');
+
+            // Fade out animation
+            splash.style.opacity = '0';
+
+            // Animation එකෙන් පසු Splash Screen ඉවත් කර App එක පෙන්වීම
+            setTimeout(function() {
+                splash.style.display = 'none';
+                app.style.display = 'block';
+            }, 500); 
+
+        }, 6000); 
+    </script>
+
 </body>
 </html>
